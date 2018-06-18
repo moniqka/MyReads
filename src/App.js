@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import Book from './Book'
+import BookShelf from './BookShelf'
 
 class BooksApp extends Component {
   state = {
@@ -14,36 +14,24 @@ class BooksApp extends Component {
     return (
       <div className="app">
         <Route exact path='/' render={() => (
-                   <div className="list-books">
+          <div className="list-books">
             <div className="list-books-title">
               <h1>MyReads</h1>
             </div>
             <div className="list-books-content">
               <div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Currently Reading</h2>
-                  <div className="bookshelf-books">
-                    <ol className="books-grid">
-                      <Book/>
-                    </ol>
-                  </div>
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Want to Read</h2>
-                  <div className="bookshelf-books">
-                    <ol className="books-grid">
-                      <Book/>
-                    </ol>
-                  </div>
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Read</h2>
-                  <div className="bookshelf-books">
-                    <ol className="books-grid">
-                      <Book/>
-                    </ol>
-                  </div>
-                </div>
+                <BookShelf
+                  title='Currently Reading'
+                  books={this.state.books}
+                />
+                <BookShelf
+                  title='Want to Read'
+                  books={this.state.books}
+                />
+                <BookShelf
+                  title='Read'
+                  books={this.state.books}
+                />
               </div>
             </div>
             <div className="open-search">
