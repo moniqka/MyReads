@@ -13,7 +13,7 @@ class BooksApp extends Component {
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
       this.setState({ books })
-      //console.log(this.state.books)
+      console.log(this.state.books)
     })
   }
 
@@ -24,7 +24,7 @@ class BooksApp extends Component {
         books: state.books.filter(b => b.id !== book.id).concat([book])
       }))
     })
-    //console.log(book, shelf)
+    console.log(book, shelf)
   }
 
   render() {
@@ -39,15 +39,21 @@ class BooksApp extends Component {
               <div>
                 <BookShelf
                   title='Currently Reading'
+                  shelf='currentlyReading'
                   books={this.state.books}
+                  changeShelf={this.changeShelf}
                 />
                 <BookShelf
                   title='Want to Read'
+                  shelf='wantToRead'
                   books={this.state.books}
+                  changeShelf={this.changeShelf}
                 />
                 <BookShelf
                   title='Read'
+                  shelf='read'
                   books={this.state.books}
+                  changeShelf={this.changeShelf}
                 />
               </div>
             </div>
