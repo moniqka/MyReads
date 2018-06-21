@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import BookShelf from './BookShelf'
+import SearchBook from './SearchBook'
 
 class BooksApp extends Component {
   state = {
@@ -13,7 +14,7 @@ class BooksApp extends Component {
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
       this.setState({ books })
-      console.log(this.state.books)
+      //console.log(this.state.books)
     })
   }
 
@@ -24,7 +25,7 @@ class BooksApp extends Component {
         books: state.books.filter(b => b.id !== book.id).concat([book])
       }))
     })
-    console.log(book, shelf)
+    //console.log(book, shelf)
   }
 
   render() {
@@ -65,22 +66,14 @@ class BooksApp extends Component {
         />
 
         <Route path='/search' render={({ history }) => (
-          <div className="search-books">
-            <div className="search-books-bar">
-              <Link className="close-search" to="/">Close</Link>
-              <div className="search-books-input-wrapper">
-                
-                <input type="text" placeholder="Search by title or author"/>
-
-              </div>
-            </div>
-            <div className="search-books-results">
-              <ol className="books-grid"></ol>
-            </div>
+          <div>
+            <SearchBook
+              books={this.state.books}
+              changeShelf={this.changeShelf}
+            />
           </div>
         )}
-        /> 
-
+        />
       </div>
     )
   }
